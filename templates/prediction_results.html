@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Results | StockPredict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="results-layout">
+
+  <div class="sp-bg">
+    <div class="sp-bg-mesh"></div>
+    <div class="sp-grid"></div>
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div>
+    <div class="sp-ticker-line"></div>
+  </div>
+
+  <nav class="sp-nav">
+    <div class="sp-nav-brand">
+      <div class="sp-nav-brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      Stock<span class="ticker">Predict</span>
+    </div>
+    <div class="sp-nav-right">
+      <div class="sp-nav-status">
+        <div class="sp-nav-dot"></div>
+        ANALYSIS COMPLETE
+      </div>
+      <a href="{{ url_for('logout') }}" class="sp-nav-pill danger">Sign Out</a>
+    </div>
+  </nav>
+
+  <div class="results-main">
+
+    <div class="results-header anim-1">
+      <h1>Stock Price <span>Prediction Results</span></h1>
+      <p>ML Model analysis complete</p>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;" class="anim-2">
+      {% if lstm_plot_html %}
+      <div class="stat-badge" style="display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);border-radius:50px;">
+        <span style="font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--accent);letter-spacing:0.1em;">LSTM</span>
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></span>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="chart-row anim-3">
+
+      {% if lstm_plot_html %}
+      <div class="plot-container">
+        <h2>⚡ LSTM — Deep Learning</h2>
+        <div style="background:#fff;padding:20px;">
+          {{ lstm_plot_html | safe }}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <div class="results-footer anim-4">
+      <a href="{{ url_for('dashboard') }}" class="back-link">
+        ← Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

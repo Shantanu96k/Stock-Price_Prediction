@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockPredict — AI-Powered Stock Forecasting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="index-layout">
+
+  <div class="sp-bg">
+    <div class="sp-bg-mesh"></div>
+    <div class="sp-grid"></div>
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div>
+    <div class="sp-orb sp-orb-3"></div>
+    <div class="sp-ticker-line"></div>
+  </div>
+
+  <nav class="sp-nav">
+    <div class="sp-nav-brand">
+      <div class="sp-nav-brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      Stock<span class="ticker">Predict</span>
+    </div>
+    <div class="sp-nav-right">
+      <a href="/login" class="sp-nav-pill">Sign In</a>
+      <a href="/register" class="sp-nav-pill" style="background:rgba(0,212,170,0.15);border-color:rgba(0,212,170,0.3);color:var(--accent);">Get Started</a>
+    </div>
+  </nav>
+
+
+  <div class="index-hero">
+    <div class="index-content">
+
+      <div class="index-tag anim-1">
+        <span class="index-tag-dot"></span>
+         AI-Powered <span class="index-tag-dot"></span> Real-time Analysis <span class="index-tag-dot"></span>
+      </div>
+
+      <h1 class="anim-2">Predict Stock Prices with <em>Machine Intelligence</em></h1>
+
+      <p class="anim-3">
+        Upload your stock CSV data and get instant Predictions using <b>LSTM.</b>
+      </p>
+
+      <div class="index-cta anim-4">
+        
+        <a href="/register" class="btn-outline">Create Free Account →</a>
+      </div>
+
+      
+      <div class="feature-pills" style="animation: fade-up .7s .65s both;">
+        <div class="feature-pill">
+          <svg fill="none" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          LSTM Deep Learning
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+  
+</body>
+</html>

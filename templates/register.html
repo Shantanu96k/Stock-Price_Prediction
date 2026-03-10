@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | StockPredict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-layout">
+
+ 
+  <div class="sp-bg">
+    <div class="sp-bg-mesh"></div>
+    <div class="sp-grid"></div>
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div>
+    <div class="sp-ticker-line"></div>
+  </div>
+
+
+  <div class="sp-card auth-card wrapper">
+    <div class="form-wrapper sign-up" style="position:relative;background:transparent;box-shadow:none;display:block;">
+
+      
+      <div class="auth-brand anim-1">
+        <div class="auth-logo">
+          <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h1>Stock<span>Predict</span></h1>
+        <p>Create your free account to get started</p>
+      </div>
+
+      <form method="POST" action="{{ url_for('register') }}" class="anim-2">
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="error">
+              {% for message in messages %}
+                <li>⚠ {{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="choose_a_username" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="min. 8 characters" required>
+        </div>
+
+        <button type="submit" class="btn anim-3">Create Account →</button>
+
+        <div class="sign-link anim-4">
+          <p>Already have an account? <a href="{{ url_for('login') }}">Sign in here</a></p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

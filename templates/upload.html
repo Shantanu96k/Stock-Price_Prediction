@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload | StockPredict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="upload-layout">
+
+  
+  <div class="sp-bg">
+    <div class="sp-bg-mesh"></div>
+    <div class="sp-grid"></div>
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div> 
+    <div class="sp-ticker-line"></div>
+  </div>
+
+  <div class="sp-card upload-card">
+
+
+    <div style="text-align:center;margin-bottom:32px;" class="anim-1">
+      <div class="auth-logo" style="margin:0 auto 16px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+      </div>
+      <h2>Upload Stock CSV</h2>
+      <p class="subtitle">Select a dataset to begin multi-model prediction</p>
+    </div>
+
+    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" class="anim-2">
+
+      <div class="file-zone" id="dropZone">
+        <label class="file-label">
+          <input type="file" name="file" required accept=".csv" onchange="updateLabel(this)">
+        </label>
+        <div class="file-zone-icon">
+          <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+        </div>
+        <p id="fileLabel">Click or drag your <strong>.csv</strong> file here</p>
+        <p style="font-size:11px;margin-top:4px;color:var(--text-dim);">Stock OHLCV data format</p>
+      </div>
+
+      <button type="submit" class="btn" style="margin-top:4px;" class="anim-3">Analyse &amp; Predict →</button>
+
+    </form>
+
+    <a class="btn-logout anim-4" href="{{ url_for('logout') }}">← Sign out</a>
+
+  </div>
+
+  <script>
+    function updateLabel(input) {
+      const label = document.getElementById('fileLabel');
+      if (input.files && input.files[0]) {
+        label.innerHTML = `<strong style="color:var(--accent)">${input.files[0].name}</strong> selected`;
+      }
+    }
+    const zone = document.getElementById('dropZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor='var(--accent)'; zone.style.background='rgba(0,212,170,0.07)'; });
+    zone.addEventListener('dragleave', () => { zone.style.borderColor=''; zone.style.background=''; });
+  </script>
+
+</body>
+</html>

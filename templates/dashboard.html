@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | StockPredict</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-layout">
+
+  <div class="sp-bg">
+    <div class="sp-bg-mesh"></div>
+    <div class="sp-grid"></div>
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div>
+    <div class="sp-orb sp-orb-3"></div>
+    <div class="sp-ticker-line"></div>
+  </div>
+
+  <nav class="sp-nav">
+    <div class="sp-nav-brand">
+      <div class="sp-nav-brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      Stock<span class="ticker">Predict</span>
+    </div>
+    <div class="sp-nav-right">
+      <div class="sp-nav-status">
+        <div class="sp-nav-dot"></div>
+        LIVE
+      </div>
+      <a href="{{ url_for('logout') }}" class="sp-nav-pill danger">Sign Out</a>
+    </div>
+  </nav>
+
+  <div class="dashboard-main">
+    <div class="sp-card dashboard-hero">
+
+      <div class="anim-1">
+        <h2>📈 Prediction Dashboard</h2>
+        <p>Upload a CSV file to run <span class="index-tag-dot"></span> ML Model <span class="index-tag-dot"></span> Stock Price Forecasting</p>
+      </div>
+
+      <div class="stat-row anim-2">
+        <div class="stat-badge">
+          <div class="val">1</div>
+          <div class="lbl">AI Models</div>
+        </div>
+        <div class="stat-badge">
+          <div class="val">LSTM</div>
+          <div class="lbl">Deep Learning</div>
+        </div>
+      </div>
+
+      <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data" class="anim-3">
+        <label for="file">Upload CSV Dataset</label>
+
+        <div class="file-zone" id="dropZone">
+          <input type="file" id="file" name="file" required accept=".csv" onchange="updateLabel(this)">
+          <div class="file-zone-icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+          </div>
+          <p id="fileLabel">Drop your CSV here or <strong>browse files</strong></p>
+          <p style="font-size:11px;margin-top:4px;color:var(--text-dim);">Supported: .csv — stock price data</p>
+        </div>
+
+        <button type="submit" class="btn anim-4">Run Prediction →</button>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    function updateLabel(input) {
+      const label = document.getElementById('fileLabel');
+      if (input.files && input.files[0]) {
+        label.innerHTML = `<strong style="color:var(--accent)">${input.files[0].name}</strong> <span style="color:var(--text-muted)">— ready to predict</span>`;
+      }
+    }
+
+    const zone = document.getElementById('dropZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--accent)'; zone.style.background = 'rgba(0,212,170,0.08)'; });
+    zone.addEventListener('dragleave', () => { zone.style.borderColor = ''; zone.style.background = ''; });
+    zone.addEventListener('drop', () => { zone.style.borderColor = ''; zone.style.background = ''; });
+  </script>
+
+</body>
+</html>
