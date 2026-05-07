@@ -121,13 +121,4 @@ StockPredict/
 
 
 ## 👨‍💻 Author
-
 **Shantanu. Sawant**
-MCA Final Year Student
-Interested in **Data Science | Machine Learning | Data Analytics**
-
----
-
-## ⭐ If you like this project
-
-Give this repository a **star ⭐ on GitHub** and feel free to contribute.
