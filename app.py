@@ -3,22 +3,25 @@ from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import pandas as pd
-
 from models.lstm_model import predict_lstm
 from utils.preprocess import preprocess_data
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your_secure_secret_key_here'
 app.permanent_session_lifetime = 1800
 
+app.secret_key = os.getenv("SECRET_KEY")
+
 app.config.update(
-    MYSQL_HOST='localhost',
-    MYSQL_USER='root',
-    MYSQL_PASSWORD='Why do you want to know my password?',
-    MYSQL_DB='stockpredict',
+    MYSQL_HOST=os.getenv("MYSQL_HOST"),
+    MYSQL_USER=os.getenv("MYSQL_USER"),
+    MYSQL_PASSWORD=os.getenv("MYSQL_PASSWORD"),
+    MYSQL_DB=os.getenv("MYSQL_DB"),
     MYSQL_CURSORCLASS='DictCursor'
 )
-
 mysql = MySQL(app)
 
 UPLOAD_FOLDER = 'uploads'
