@@ -1,5 +1,8 @@
 # Stock-Price_Prediction
-AI Stock Price Prediction using LSTM
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-LSTM-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 # StockPredict 📈
 
